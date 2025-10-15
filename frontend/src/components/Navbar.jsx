@@ -90,7 +90,7 @@ const Navbar = () => {
           </div>
         </div>
         
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle - Only show on very small screens */}
         {user && (
           <button 
             className="mobile-menu-toggle"
@@ -135,6 +135,69 @@ const Navbar = () => {
             <button onClick={handleLogout} className="btn btn-white-outline">
               <LogOut size={16} />
               Logout
+            </button>
+          </div>
+        )}
+        
+        {/* Mobile Menu - Always visible on mobile */}
+        {user && (
+          <div className="mobile-menu-always-visible" style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem'
+          }}>
+            {/* Profile Icon */}
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.25rem',
+              background: 'rgba(255, 255, 255, 0.1)',
+              padding: '0.25rem 0.5rem',
+              borderRadius: '0.5rem',
+              border: '1px solid rgba(255, 255, 255, 0.2)'
+            }}>
+              <User size={16} color="white" />
+              <span style={{ fontSize: '0.75rem', color: 'white', fontWeight: '500' }}>
+                {user.full_name.split(' ')[0]}
+              </span>
+            </div>
+            
+            {/* Settings Button */}
+            <button 
+              onClick={handleSettings}
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                color: 'white',
+                padding: '0.5rem',
+                borderRadius: '0.5rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <Settings size={16} />
+            </button>
+            
+            {/* Logout Button */}
+            <button 
+              onClick={handleLogout}
+              style={{
+                background: '#ef4444',
+                border: '1px solid #ef4444',
+                color: 'white',
+                padding: '0.5rem',
+                borderRadius: '0.5rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <LogOut size={16} />
             </button>
           </div>
         )}

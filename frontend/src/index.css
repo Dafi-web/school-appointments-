@@ -347,6 +347,16 @@ body {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
+  
+  /* Mobile menu button hover effects */
+  .mobile-menu-always-visible button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mobile-menu-always-visible button:active {
+    transform: translateY(0);
+  }
 }
 
 @media (min-width: 769px) {
@@ -447,11 +457,29 @@ body {
 
 @media (max-width: 768px) {
   .mobile-menu-toggle {
-    display: block !important;
+    display: none !important; /* Hide hamburger menu on mobile */
   }
   
   .desktop-menu {
-    display: none !important;
+    display: none !important; /* Hide desktop menu on mobile */
+  }
+  
+  .mobile-menu-always-visible {
+    display: flex !important; /* Show mobile menu on mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-always-visible {
+    display: none !important; /* Hide mobile menu on desktop */
+  }
+  
+  .desktop-menu {
+    display: flex !important; /* Show desktop menu on desktop */
+  }
+  
+  .mobile-menu-toggle {
+    display: none !important; /* Hide hamburger menu on desktop */
   }
 }
 
