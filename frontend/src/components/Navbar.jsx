@@ -33,12 +33,14 @@ const Navbar = () => {
     <nav style={{
       background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-      padding: '1rem 0'
+      padding: '1rem 0',
+      position: 'relative'
     }}>
       <div className="container" style={{
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        position: 'relative'
       }}>
         {/* Brand/Logo */}
         <div 
@@ -100,7 +102,6 @@ const Navbar = () => {
               fontSize: '1.5rem',
               cursor: 'pointer',
               padding: '0.5rem',
-              display: 'none',
               borderRadius: '0.5rem',
               transition: 'all 0.3s ease'
             }}
@@ -142,11 +143,17 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {user && isMobileMenuOpen && (
         <div className="mobile-menu" style={{
-          background: 'rgba(255, 255, 255, 0.1)',
+          background: 'rgba(30, 64, 175, 0.95)',
           backdropFilter: 'blur(10px)',
           borderTop: '1px solid rgba(255, 255, 255, 0.2)',
           padding: '1rem',
-          marginTop: '1rem'
+          marginTop: '1rem',
+          position: 'absolute',
+          top: '100%',
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
         }}>
           <div className="navbar-mobile" style={{
             display: 'flex',
@@ -178,7 +185,7 @@ const Navbar = () => {
             <div className="navbar-actions" style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.5rem'
+              gap: '0.75rem'
             }}>
               <button onClick={handleSettings} className="btn btn-white" style={{ 
                 width: '100%', 
@@ -186,20 +193,26 @@ const Navbar = () => {
                 background: 'white',
                 color: 'var(--primary)',
                 border: '2px solid white',
-                fontWeight: '600'
+                fontWeight: '600',
+                padding: '0.875rem 1rem',
+                fontSize: '0.9rem',
+                borderRadius: '0.5rem'
               }}>
-                <Settings size={16} />
+                <Settings size={18} />
                 Settings
               </button>
               <button onClick={handleLogout} className="btn btn-white-outline" style={{ 
                 width: '100%', 
                 justifyContent: 'center',
-                background: 'var(--primary)',
+                background: '#ef4444',
                 color: 'white',
-                border: '2px solid var(--primary)',
-                fontWeight: '600'
+                border: '2px solid #ef4444',
+                fontWeight: '600',
+                padding: '0.875rem 1rem',
+                fontSize: '0.9rem',
+                borderRadius: '0.5rem'
               }}>
-                <LogOut size={16} />
+                <LogOut size={18} />
                 Logout
               </button>
             </div>
