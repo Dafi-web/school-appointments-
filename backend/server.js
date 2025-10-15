@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDatabase } from './config/database.js';
+import { testEmailConfig } from './services/emailService.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import appointmentRoutes from './routes/appointmentRoutes.js';
@@ -51,7 +52,10 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB and start server
-connectDatabase().then(() => {
+connectDatabase().then(async () => {
+  // Test email configuration
+  await testEmailConfig();
+  
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
   });

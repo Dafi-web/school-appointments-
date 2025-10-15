@@ -1,4 +1,5 @@
 import { Appointment, User, TeacherAvailability } from '../config/database.js';
+import { sendAppointmentNotification } from '../services/emailService.js';
 
 export const getAppointments = async (req, res) => {
   try {
@@ -104,6 +105,31 @@ export const createAppointment = async (req, res) => {
     const populatedAppointment = await Appointment.findById(appointment._id)
       .populate('teacher_id', 'full_name email')
       .populate('student_id', 'full_name email');
+
+    // Send email notification to teacher
+    try {
+      const emailResult = await sendAppointmentNotification(
+        {
+          title: subject,
+          date: date,
+          time: start_time,
+          duration: Math.round((new Date(`2000-01-01 ${end_time}`) - new Date(`2000-01-01 ${start_time}`)) / (1000 * 60)),
+          description: notes || '',
+          status: 'pending'
+        },
+        populatedAppointment.teacher_id,
+        populatedAppointment.student_id
+      );
+      
+      if (emailResult.success) {
+        console.log('📧 Email notification sent to teacher:', populatedAppointment.teacher_id.email);
+      } else {
+        console.warn('⚠️ Failed to send email notification:', emailResult.error);
+      }
+    } catch (emailError) {
+      console.error('❌ Email notification error:', emailError);
+      // Don't fail the appointment creation if email fails
+    }
 
     res.status(201).json({
       message: 'Appointment created successfully',
