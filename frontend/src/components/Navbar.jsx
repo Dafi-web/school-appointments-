@@ -94,13 +94,15 @@ const Navbar = () => {
             className="mobile-menu-toggle"
             onClick={toggleMobileMenu}
             style={{
-              background: 'none',
-              border: 'none',
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
               color: 'white',
               fontSize: '1.5rem',
               cursor: 'pointer',
               padding: '0.5rem',
-              display: 'none'
+              display: 'none',
+              borderRadius: '0.5rem',
+              transition: 'all 0.3s ease'
             }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -178,11 +180,25 @@ const Navbar = () => {
               flexDirection: 'column',
               gap: '0.5rem'
             }}>
-              <button onClick={handleSettings} className="btn btn-white" style={{ width: '100%', justifyContent: 'center' }}>
+              <button onClick={handleSettings} className="btn btn-white" style={{ 
+                width: '100%', 
+                justifyContent: 'center',
+                background: 'white',
+                color: 'var(--primary)',
+                border: '2px solid white',
+                fontWeight: '600'
+              }}>
                 <Settings size={16} />
                 Settings
               </button>
-              <button onClick={handleLogout} className="btn btn-white-outline" style={{ width: '100%', justifyContent: 'center' }}>
+              <button onClick={handleLogout} className="btn btn-white-outline" style={{ 
+                width: '100%', 
+                justifyContent: 'center',
+                background: 'var(--primary)',
+                color: 'white',
+                border: '2px solid var(--primary)',
+                fontWeight: '600'
+              }}>
                 <LogOut size={16} />
                 Logout
               </button>
